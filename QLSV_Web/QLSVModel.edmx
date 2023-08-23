@@ -1,0 +1,819 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLSV2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BOMON">
+          <Key>
+            <PropertyRef Name="MaBoMon" />
+          </Key>
+          <Property Name="MaBoMon" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenBoMon" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DIEM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaSV" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaHocPhan" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Diem" Type="float" />
+        </EntityType>
+        <EntityType Name="DONVI">
+          <Key>
+            <PropertyRef Name="MaDonVi" />
+          </Key>
+          <Property Name="MaDonVi" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenDonVi" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HeDaoTao">
+          <Key>
+            <PropertyRef Name="MaHeDaoTao" />
+          </Key>
+          <Property Name="MaHeDaoTao" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenHeDaoTao" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HOCPHAN">
+          <Key>
+            <PropertyRef Name="MaHocPhan" />
+          </Key>
+          <Property Name="MaHocPhan" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenHocPhan" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SoTinChi" Type="int" Nullable="false" />
+          <Property Name="MaBoMon" Type="varchar" MaxLength="10" />
+          <Property Name="MaDonVi" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="KHOA">
+          <Key>
+            <PropertyRef Name="MaKhoa" />
+          </Key>
+          <Property Name="MaKhoa" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenKhoa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nam" Type="int" />
+        </EntityType>
+        <EntityType Name="KHUNGCT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaHocPhan" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DVHT" Type="int" Nullable="false" />
+          <Property Name="MaLop" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOP">
+          <Key>
+            <PropertyRef Name="MaLop" />
+          </Key>
+          <Property Name="MaLop" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenLop" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SoHocKyDaoTaoKhung" Type="int" Nullable="false" />
+          <Property Name="SoHocKyDaoTaoToiDa" Type="int" Nullable="false" />
+          <Property Name="HeSoQuiDoi" Type="int" Nullable="false" />
+          <Property Name="MaMoHinhDaoTao" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaDonViLienKet" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaDonVi" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NamHoc" Type="int" Nullable="false" />
+          <Property Name="MaNganh" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaHeDaoTao" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MoHinhDaoTao">
+          <Key>
+            <PropertyRef Name="MaMoHinhDaoTao" />
+          </Key>
+          <Property Name="MaMoHinhDaoTao" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenMoHinhDaoTao" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NganhDaoTao">
+          <Key>
+            <PropertyRef Name="MaNganhDaoTao" />
+          </Key>
+          <Property Name="MaNganhDaoTao" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenNganhDaoTao" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SINHVIEN">
+          <Key>
+            <PropertyRef Name="MaSV" />
+          </Key>
+          <Property Name="MaSV" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenSV" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NamSinh" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="MaLop" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__DIEM__MaHocPhan__66603565">
+          <End Role="HOCPHAN" Type="Self.HOCPHAN" Multiplicity="1" />
+          <End Role="DIEM" Type="Self.DIEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCPHAN">
+              <PropertyRef Name="MaHocPhan" />
+            </Principal>
+            <Dependent Role="DIEM">
+              <PropertyRef Name="MaHocPhan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DIEM__MaSV__656C112C">
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="1" />
+          <End Role="DIEM" Type="Self.DIEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="MaSV" />
+            </Principal>
+            <Dependent Role="DIEM">
+              <PropertyRef Name="MaSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOCPHAN__MaBoMon__5AEE82B9">
+          <End Role="BOMON" Type="Self.BOMON" Multiplicity="0..1" />
+          <End Role="HOCPHAN" Type="Self.HOCPHAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOMON">
+              <PropertyRef Name="MaBoMon" />
+            </Principal>
+            <Dependent Role="HOCPHAN">
+              <PropertyRef Name="MaBoMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOCPHAN__MaDonVi__5BE2A6F2">
+          <End Role="DONVI" Type="Self.DONVI" Multiplicity="0..1" />
+          <End Role="HOCPHAN" Type="Self.HOCPHAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONVI">
+              <PropertyRef Name="MaDonVi" />
+            </Principal>
+            <Dependent Role="HOCPHAN">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KHUNGCT__MaHocPh__619B8048">
+          <End Role="HOCPHAN" Type="Self.HOCPHAN" Multiplicity="1" />
+          <End Role="KHUNGCT" Type="Self.KHUNGCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCPHAN">
+              <PropertyRef Name="MaHocPhan" />
+            </Principal>
+            <Dependent Role="KHUNGCT">
+              <PropertyRef Name="MaHocPhan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KHUNGCT__MaLop__628FA481">
+          <End Role="LOP" Type="Self.LOP" Multiplicity="1" />
+          <End Role="KHUNGCT" Type="Self.KHUNGCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOP">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="KHUNGCT">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LOP__MaDonVi__5629CD9C">
+          <End Role="DONVI" Type="Self.DONVI" Multiplicity="1" />
+          <End Role="LOP" Type="Self.LOP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONVI">
+              <PropertyRef Name="MaDonVi" />
+            </Principal>
+            <Dependent Role="LOP">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LOP__MaHeDaoTao__5812160E">
+          <End Role="HeDaoTao" Type="Self.HeDaoTao" Multiplicity="1" />
+          <End Role="LOP" Type="Self.LOP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeDaoTao">
+              <PropertyRef Name="MaHeDaoTao" />
+            </Principal>
+            <Dependent Role="LOP">
+              <PropertyRef Name="MaHeDaoTao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LOP__MaMoHinhDao__5535A963">
+          <End Role="MoHinhDaoTao" Type="Self.MoHinhDaoTao" Multiplicity="1" />
+          <End Role="LOP" Type="Self.LOP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MoHinhDaoTao">
+              <PropertyRef Name="MaMoHinhDaoTao" />
+            </Principal>
+            <Dependent Role="LOP">
+              <PropertyRef Name="MaMoHinhDaoTao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LOP__MaNganh__571DF1D5">
+          <End Role="NganhDaoTao" Type="Self.NganhDaoTao" Multiplicity="1" />
+          <End Role="LOP" Type="Self.LOP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NganhDaoTao">
+              <PropertyRef Name="MaNganhDaoTao" />
+            </Principal>
+            <Dependent Role="LOP">
+              <PropertyRef Name="MaNganh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SINHVIEN__MaLop__5EBF139D">
+          <End Role="LOP" Type="Self.LOP" Multiplicity="1" />
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOP">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="SINHVIEN">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="LaySVTheoLop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaLop" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="LayTatCaKhoa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LayToanBoSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LocLopCoSinhVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="QLSV2021ModelStoreContainer">
+          <EntitySet Name="BOMON" EntityType="Self.BOMON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DIEM" EntityType="Self.DIEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DONVI" EntityType="Self.DONVI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HeDaoTao" EntityType="Self.HeDaoTao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOCPHAN" EntityType="Self.HOCPHAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHOA" EntityType="Self.KHOA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHUNGCT" EntityType="Self.KHUNGCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOP" EntityType="Self.LOP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MoHinhDaoTao" EntityType="Self.MoHinhDaoTao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NganhDaoTao" EntityType="Self.NganhDaoTao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SINHVIEN" EntityType="Self.SINHVIEN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DIEM__MaHocPhan__66603565" Association="Self.FK__DIEM__MaHocPhan__66603565">
+            <End Role="HOCPHAN" EntitySet="HOCPHAN" />
+            <End Role="DIEM" EntitySet="DIEM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DIEM__MaSV__656C112C" Association="Self.FK__DIEM__MaSV__656C112C">
+            <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+            <End Role="DIEM" EntitySet="DIEM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOCPHAN__MaBoMon__5AEE82B9" Association="Self.FK__HOCPHAN__MaBoMon__5AEE82B9">
+            <End Role="BOMON" EntitySet="BOMON" />
+            <End Role="HOCPHAN" EntitySet="HOCPHAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOCPHAN__MaDonVi__5BE2A6F2" Association="Self.FK__HOCPHAN__MaDonVi__5BE2A6F2">
+            <End Role="DONVI" EntitySet="DONVI" />
+            <End Role="HOCPHAN" EntitySet="HOCPHAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KHUNGCT__MaHocPh__619B8048" Association="Self.FK__KHUNGCT__MaHocPh__619B8048">
+            <End Role="HOCPHAN" EntitySet="HOCPHAN" />
+            <End Role="KHUNGCT" EntitySet="KHUNGCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KHUNGCT__MaLop__628FA481" Association="Self.FK__KHUNGCT__MaLop__628FA481">
+            <End Role="LOP" EntitySet="LOP" />
+            <End Role="KHUNGCT" EntitySet="KHUNGCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOP__MaDonVi__5629CD9C" Association="Self.FK__LOP__MaDonVi__5629CD9C">
+            <End Role="DONVI" EntitySet="DONVI" />
+            <End Role="LOP" EntitySet="LOP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOP__MaHeDaoTao__5812160E" Association="Self.FK__LOP__MaHeDaoTao__5812160E">
+            <End Role="HeDaoTao" EntitySet="HeDaoTao" />
+            <End Role="LOP" EntitySet="LOP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOP__MaMoHinhDao__5535A963" Association="Self.FK__LOP__MaMoHinhDao__5535A963">
+            <End Role="MoHinhDaoTao" EntitySet="MoHinhDaoTao" />
+            <End Role="LOP" EntitySet="LOP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOP__MaNganh__571DF1D5" Association="Self.FK__LOP__MaNganh__571DF1D5">
+            <End Role="NganhDaoTao" EntitySet="NganhDaoTao" />
+            <End Role="LOP" EntitySet="LOP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SINHVIEN__MaLop__5EBF139D" Association="Self.FK__SINHVIEN__MaLop__5EBF139D">
+            <End Role="LOP" EntitySet="LOP" />
+            <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLSV2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QLSV2021Entities2" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="BOMONs" EntityType="QLSV2021Model.BOMON" />
+          <EntitySet Name="DIEMs" EntityType="QLSV2021Model.DIEM" />
+          <EntitySet Name="DONVIs" EntityType="QLSV2021Model.DONVI" />
+          <EntitySet Name="HeDaoTaos" EntityType="QLSV2021Model.HeDaoTao" />
+          <EntitySet Name="HOCPHANs" EntityType="QLSV2021Model.HOCPHAN" />
+          <EntitySet Name="KHOAs" EntityType="QLSV2021Model.KHOA" />
+          <EntitySet Name="KHUNGCTs" EntityType="QLSV2021Model.KHUNGCT" />
+          <EntitySet Name="LOPs" EntityType="QLSV2021Model.LOP" />
+          <EntitySet Name="MoHinhDaoTaos" EntityType="QLSV2021Model.MoHinhDaoTao" />
+          <EntitySet Name="NganhDaoTaos" EntityType="QLSV2021Model.NganhDaoTao" />
+          <EntitySet Name="SINHVIENs" EntityType="QLSV2021Model.SINHVIEN" />
+          <AssociationSet Name="FK__HOCPHAN__MaBoMon__5AEE82B9" Association="QLSV2021Model.FK__HOCPHAN__MaBoMon__5AEE82B9">
+            <End Role="BOMON" EntitySet="BOMONs" />
+            <End Role="HOCPHAN" EntitySet="HOCPHANs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DIEM__MaHocPhan__66603565" Association="QLSV2021Model.FK__DIEM__MaHocPhan__66603565">
+            <End Role="HOCPHAN" EntitySet="HOCPHANs" />
+            <End Role="DIEM" EntitySet="DIEMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DIEM__MaSV__656C112C" Association="QLSV2021Model.FK__DIEM__MaSV__656C112C">
+            <End Role="SINHVIEN" EntitySet="SINHVIENs" />
+            <End Role="DIEM" EntitySet="DIEMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOCPHAN__MaDonVi__5BE2A6F2" Association="QLSV2021Model.FK__HOCPHAN__MaDonVi__5BE2A6F2">
+            <End Role="DONVI" EntitySet="DONVIs" />
+            <End Role="HOCPHAN" EntitySet="HOCPHANs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOP__MaDonVi__5629CD9C" Association="QLSV2021Model.FK__LOP__MaDonVi__5629CD9C">
+            <End Role="DONVI" EntitySet="DONVIs" />
+            <End Role="LOP" EntitySet="LOPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOP__MaHeDaoTao__5812160E" Association="QLSV2021Model.FK__LOP__MaHeDaoTao__5812160E">
+            <End Role="HeDaoTao" EntitySet="HeDaoTaos" />
+            <End Role="LOP" EntitySet="LOPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KHUNGCT__MaHocPh__619B8048" Association="QLSV2021Model.FK__KHUNGCT__MaHocPh__619B8048">
+            <End Role="HOCPHAN" EntitySet="HOCPHANs" />
+            <End Role="KHUNGCT" EntitySet="KHUNGCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KHUNGCT__MaLop__628FA481" Association="QLSV2021Model.FK__KHUNGCT__MaLop__628FA481">
+            <End Role="LOP" EntitySet="LOPs" />
+            <End Role="KHUNGCT" EntitySet="KHUNGCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOP__MaMoHinhDao__5535A963" Association="QLSV2021Model.FK__LOP__MaMoHinhDao__5535A963">
+            <End Role="MoHinhDaoTao" EntitySet="MoHinhDaoTaos" />
+            <End Role="LOP" EntitySet="LOPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOP__MaNganh__571DF1D5" Association="QLSV2021Model.FK__LOP__MaNganh__571DF1D5">
+            <End Role="NganhDaoTao" EntitySet="NganhDaoTaos" />
+            <End Role="LOP" EntitySet="LOPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SINHVIEN__MaLop__5EBF139D" Association="QLSV2021Model.FK__SINHVIEN__MaLop__5EBF139D">
+            <End Role="LOP" EntitySet="LOPs" />
+            <End Role="SINHVIEN" EntitySet="SINHVIENs" />
+          </AssociationSet>
+          <FunctionImport Name="LaySVTheoLop" ReturnType="Collection(QLSV2021Model.LaySVTheoLop_Result)">
+          <Parameter Name="MaLop" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="LayTatCaKhoa" ReturnType="Collection(QLSV2021Model.LayTatCaKhoa_Result)" />
+          <FunctionImport Name="LocLopCoSinhVien" ReturnType="Collection(QLSV2021Model.LocLopCoSinhVien_Result)" />
+          <FunctionImport Name="LayToanBoSV" ReturnType="Collection(QLSV2021Model.LayToanBoSV_Result)" />
+        </EntityContainer>
+        <EntityType Name="BOMON">
+          <Key>
+            <PropertyRef Name="MaBoMon" />
+          </Key>
+          <Property Name="MaBoMon" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenBoMon" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HOCPHANs" Relationship="QLSV2021Model.FK__HOCPHAN__MaBoMon__5AEE82B9" FromRole="BOMON" ToRole="HOCPHAN" />
+        </EntityType>
+        <EntityType Name="DIEM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaSV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaHocPhan" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Diem1" Type="Double" />
+          <NavigationProperty Name="HOCPHAN" Relationship="QLSV2021Model.FK__DIEM__MaHocPhan__66603565" FromRole="DIEM" ToRole="HOCPHAN" />
+          <NavigationProperty Name="SINHVIEN" Relationship="QLSV2021Model.FK__DIEM__MaSV__656C112C" FromRole="DIEM" ToRole="SINHVIEN" />
+        </EntityType>
+        <EntityType Name="DONVI">
+          <Key>
+            <PropertyRef Name="MaDonVi" />
+          </Key>
+          <Property Name="MaDonVi" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenDonVi" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HOCPHANs" Relationship="QLSV2021Model.FK__HOCPHAN__MaDonVi__5BE2A6F2" FromRole="DONVI" ToRole="HOCPHAN" />
+          <NavigationProperty Name="LOPs" Relationship="QLSV2021Model.FK__LOP__MaDonVi__5629CD9C" FromRole="DONVI" ToRole="LOP" />
+        </EntityType>
+        <EntityType Name="HeDaoTao">
+          <Key>
+            <PropertyRef Name="MaHeDaoTao" />
+          </Key>
+          <Property Name="MaHeDaoTao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenHeDaoTao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOPs" Relationship="QLSV2021Model.FK__LOP__MaHeDaoTao__5812160E" FromRole="HeDaoTao" ToRole="LOP" />
+        </EntityType>
+        <EntityType Name="HOCPHAN">
+          <Key>
+            <PropertyRef Name="MaHocPhan" />
+          </Key>
+          <Property Name="MaHocPhan" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenHocPhan" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SoTinChi" Type="Int32" Nullable="false" />
+          <Property Name="MaBoMon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaDonVi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BOMON" Relationship="QLSV2021Model.FK__HOCPHAN__MaBoMon__5AEE82B9" FromRole="HOCPHAN" ToRole="BOMON" />
+          <NavigationProperty Name="DIEMs" Relationship="QLSV2021Model.FK__DIEM__MaHocPhan__66603565" FromRole="HOCPHAN" ToRole="DIEM" />
+          <NavigationProperty Name="DONVI" Relationship="QLSV2021Model.FK__HOCPHAN__MaDonVi__5BE2A6F2" FromRole="HOCPHAN" ToRole="DONVI" />
+          <NavigationProperty Name="KHUNGCTs" Relationship="QLSV2021Model.FK__KHUNGCT__MaHocPh__619B8048" FromRole="HOCPHAN" ToRole="KHUNGCT" />
+        </EntityType>
+        <EntityType Name="KHOA">
+          <Key>
+            <PropertyRef Name="MaKhoa" />
+          </Key>
+          <Property Name="MaKhoa" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenKhoa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nam" Type="Int32" />
+        </EntityType>
+        <EntityType Name="KHUNGCT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaHocPhan" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DVHT" Type="Int32" Nullable="false" />
+          <Property Name="MaLop" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HOCPHAN" Relationship="QLSV2021Model.FK__KHUNGCT__MaHocPh__619B8048" FromRole="KHUNGCT" ToRole="HOCPHAN" />
+          <NavigationProperty Name="LOP" Relationship="QLSV2021Model.FK__KHUNGCT__MaLop__628FA481" FromRole="KHUNGCT" ToRole="LOP" />
+        </EntityType>
+        <EntityType Name="LOP">
+          <Key>
+            <PropertyRef Name="MaLop" />
+          </Key>
+          <Property Name="MaLop" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenLop" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SoHocKyDaoTaoKhung" Type="Int32" Nullable="false" />
+          <Property Name="SoHocKyDaoTaoToiDa" Type="Int32" Nullable="false" />
+          <Property Name="HeSoQuiDoi" Type="Int32" Nullable="false" />
+          <Property Name="MaMoHinhDaoTao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaDonViLienKet" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaDonVi" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NamHoc" Type="Int32" Nullable="false" />
+          <Property Name="MaNganh" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaHeDaoTao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DONVI" Relationship="QLSV2021Model.FK__LOP__MaDonVi__5629CD9C" FromRole="LOP" ToRole="DONVI" />
+          <NavigationProperty Name="HeDaoTao" Relationship="QLSV2021Model.FK__LOP__MaHeDaoTao__5812160E" FromRole="LOP" ToRole="HeDaoTao" />
+          <NavigationProperty Name="KHUNGCTs" Relationship="QLSV2021Model.FK__KHUNGCT__MaLop__628FA481" FromRole="LOP" ToRole="KHUNGCT" />
+          <NavigationProperty Name="MoHinhDaoTao" Relationship="QLSV2021Model.FK__LOP__MaMoHinhDao__5535A963" FromRole="LOP" ToRole="MoHinhDaoTao" />
+          <NavigationProperty Name="NganhDaoTao" Relationship="QLSV2021Model.FK__LOP__MaNganh__571DF1D5" FromRole="LOP" ToRole="NganhDaoTao" />
+          <NavigationProperty Name="SINHVIENs" Relationship="QLSV2021Model.FK__SINHVIEN__MaLop__5EBF139D" FromRole="LOP" ToRole="SINHVIEN" />
+        </EntityType>
+        <EntityType Name="MoHinhDaoTao">
+          <Key>
+            <PropertyRef Name="MaMoHinhDaoTao" />
+          </Key>
+          <Property Name="MaMoHinhDaoTao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenMoHinhDaoTao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOPs" Relationship="QLSV2021Model.FK__LOP__MaMoHinhDao__5535A963" FromRole="MoHinhDaoTao" ToRole="LOP" />
+        </EntityType>
+        <EntityType Name="NganhDaoTao">
+          <Key>
+            <PropertyRef Name="MaNganhDaoTao" />
+          </Key>
+          <Property Name="MaNganhDaoTao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenNganhDaoTao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOPs" Relationship="QLSV2021Model.FK__LOP__MaNganh__571DF1D5" FromRole="NganhDaoTao" ToRole="LOP" />
+        </EntityType>
+        <EntityType Name="SINHVIEN">
+          <Key>
+            <PropertyRef Name="MaSV" />
+          </Key>
+          <Property Name="MaSV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenSV" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="NamSinh" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="MaLop" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DIEMs" Relationship="QLSV2021Model.FK__DIEM__MaSV__656C112C" FromRole="SINHVIEN" ToRole="DIEM" />
+          <NavigationProperty Name="LOP" Relationship="QLSV2021Model.FK__SINHVIEN__MaLop__5EBF139D" FromRole="SINHVIEN" ToRole="LOP" />
+        </EntityType>
+        <Association Name="FK__HOCPHAN__MaBoMon__5AEE82B9">
+          <End Type="QLSV2021Model.BOMON" Role="BOMON" Multiplicity="0..1" />
+          <End Type="QLSV2021Model.HOCPHAN" Role="HOCPHAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOMON">
+              <PropertyRef Name="MaBoMon" />
+            </Principal>
+            <Dependent Role="HOCPHAN">
+              <PropertyRef Name="MaBoMon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DIEM__MaHocPhan__66603565">
+          <End Type="QLSV2021Model.HOCPHAN" Role="HOCPHAN" Multiplicity="1" />
+          <End Type="QLSV2021Model.DIEM" Role="DIEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCPHAN">
+              <PropertyRef Name="MaHocPhan" />
+            </Principal>
+            <Dependent Role="DIEM">
+              <PropertyRef Name="MaHocPhan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DIEM__MaSV__656C112C">
+          <End Type="QLSV2021Model.SINHVIEN" Role="SINHVIEN" Multiplicity="1" />
+          <End Type="QLSV2021Model.DIEM" Role="DIEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINHVIEN">
+              <PropertyRef Name="MaSV" />
+            </Principal>
+            <Dependent Role="DIEM">
+              <PropertyRef Name="MaSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOCPHAN__MaDonVi__5BE2A6F2">
+          <End Type="QLSV2021Model.DONVI" Role="DONVI" Multiplicity="0..1" />
+          <End Type="QLSV2021Model.HOCPHAN" Role="HOCPHAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONVI">
+              <PropertyRef Name="MaDonVi" />
+            </Principal>
+            <Dependent Role="HOCPHAN">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LOP__MaDonVi__5629CD9C">
+          <End Type="QLSV2021Model.DONVI" Role="DONVI" Multiplicity="1" />
+          <End Type="QLSV2021Model.LOP" Role="LOP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONVI">
+              <PropertyRef Name="MaDonVi" />
+            </Principal>
+            <Dependent Role="LOP">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LOP__MaHeDaoTao__5812160E">
+          <End Type="QLSV2021Model.HeDaoTao" Role="HeDaoTao" Multiplicity="1" />
+          <End Type="QLSV2021Model.LOP" Role="LOP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeDaoTao">
+              <PropertyRef Name="MaHeDaoTao" />
+            </Principal>
+            <Dependent Role="LOP">
+              <PropertyRef Name="MaHeDaoTao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KHUNGCT__MaHocPh__619B8048">
+          <End Type="QLSV2021Model.HOCPHAN" Role="HOCPHAN" Multiplicity="1" />
+          <End Type="QLSV2021Model.KHUNGCT" Role="KHUNGCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOCPHAN">
+              <PropertyRef Name="MaHocPhan" />
+            </Principal>
+            <Dependent Role="KHUNGCT">
+              <PropertyRef Name="MaHocPhan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KHUNGCT__MaLop__628FA481">
+          <End Type="QLSV2021Model.LOP" Role="LOP" Multiplicity="1" />
+          <End Type="QLSV2021Model.KHUNGCT" Role="KHUNGCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOP">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="KHUNGCT">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LOP__MaMoHinhDao__5535A963">
+          <End Type="QLSV2021Model.MoHinhDaoTao" Role="MoHinhDaoTao" Multiplicity="1" />
+          <End Type="QLSV2021Model.LOP" Role="LOP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MoHinhDaoTao">
+              <PropertyRef Name="MaMoHinhDaoTao" />
+            </Principal>
+            <Dependent Role="LOP">
+              <PropertyRef Name="MaMoHinhDaoTao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LOP__MaNganh__571DF1D5">
+          <End Type="QLSV2021Model.NganhDaoTao" Role="NganhDaoTao" Multiplicity="1" />
+          <End Type="QLSV2021Model.LOP" Role="LOP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NganhDaoTao">
+              <PropertyRef Name="MaNganhDaoTao" />
+            </Principal>
+            <Dependent Role="LOP">
+              <PropertyRef Name="MaNganh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SINHVIEN__MaLop__5EBF139D">
+          <End Type="QLSV2021Model.LOP" Role="LOP" Multiplicity="1" />
+          <End Type="QLSV2021Model.SINHVIEN" Role="SINHVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOP">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="SINHVIEN">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="LaySVTheoLop_Result">
+          <Property Type="String" Name="MaSV" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenSV" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="GioiTinh" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="NamSinh" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="MaLop" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="LayTatCaKhoa_Result">
+          <Property Type="String" Name="MaKhoa" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenKhoa" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Nam" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="LocLopCoSinhVien_Result">
+          <Property Type="String" Name="MaLop" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenLop" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="NamHoc" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="LayToanBoSV_Result">
+          <Property Type="String" Name="MaSV" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenSV" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="GioiTinh" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="NamSinh" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="MaLop" Nullable="false" MaxLength="10" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLSV2021ModelStoreContainer" CdmEntityContainer="QLSV2021Entities2" >
+          <EntitySetMapping Name="BOMONs">
+            <EntityTypeMapping TypeName="QLSV2021Model.BOMON">
+              <MappingFragment StoreEntitySet="BOMON">
+                <ScalarProperty Name="TenBoMon" ColumnName="TenBoMon" />
+                <ScalarProperty Name="MaBoMon" ColumnName="MaBoMon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIEMs">
+            <EntityTypeMapping TypeName="QLSV2021Model.DIEM">
+              <MappingFragment StoreEntitySet="DIEM">
+                <ScalarProperty Name="Diem1" ColumnName="Diem" />
+                <ScalarProperty Name="MaHocPhan" ColumnName="MaHocPhan" />
+                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONVIs">
+            <EntityTypeMapping TypeName="QLSV2021Model.DONVI">
+              <MappingFragment StoreEntitySet="DONVI">
+                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HeDaoTaos">
+            <EntityTypeMapping TypeName="QLSV2021Model.HeDaoTao">
+              <MappingFragment StoreEntitySet="HeDaoTao">
+                <ScalarProperty Name="TenHeDaoTao" ColumnName="TenHeDaoTao" />
+                <ScalarProperty Name="MaHeDaoTao" ColumnName="MaHeDaoTao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOCPHANs">
+            <EntityTypeMapping TypeName="QLSV2021Model.HOCPHAN">
+              <MappingFragment StoreEntitySet="HOCPHAN">
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="MaBoMon" ColumnName="MaBoMon" />
+                <ScalarProperty Name="SoTinChi" ColumnName="SoTinChi" />
+                <ScalarProperty Name="TenHocPhan" ColumnName="TenHocPhan" />
+                <ScalarProperty Name="MaHocPhan" ColumnName="MaHocPhan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHOAs">
+            <EntityTypeMapping TypeName="QLSV2021Model.KHOA">
+              <MappingFragment StoreEntitySet="KHOA">
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="TenKhoa" ColumnName="TenKhoa" />
+                <ScalarProperty Name="MaKhoa" ColumnName="MaKhoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHUNGCTs">
+            <EntityTypeMapping TypeName="QLSV2021Model.KHUNGCT">
+              <MappingFragment StoreEntitySet="KHUNGCT">
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+                <ScalarProperty Name="DVHT" ColumnName="DVHT" />
+                <ScalarProperty Name="MaHocPhan" ColumnName="MaHocPhan" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOPs">
+            <EntityTypeMapping TypeName="QLSV2021Model.LOP">
+              <MappingFragment StoreEntitySet="LOP">
+                <ScalarProperty Name="MaHeDaoTao" ColumnName="MaHeDaoTao" />
+                <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
+                <ScalarProperty Name="NamHoc" ColumnName="NamHoc" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="MaDonViLienKet" ColumnName="MaDonViLienKet" />
+                <ScalarProperty Name="MaMoHinhDaoTao" ColumnName="MaMoHinhDaoTao" />
+                <ScalarProperty Name="HeSoQuiDoi" ColumnName="HeSoQuiDoi" />
+                <ScalarProperty Name="SoHocKyDaoTaoToiDa" ColumnName="SoHocKyDaoTaoToiDa" />
+                <ScalarProperty Name="SoHocKyDaoTaoKhung" ColumnName="SoHocKyDaoTaoKhung" />
+                <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoHinhDaoTaos">
+            <EntityTypeMapping TypeName="QLSV2021Model.MoHinhDaoTao">
+              <MappingFragment StoreEntitySet="MoHinhDaoTao">
+                <ScalarProperty Name="TenMoHinhDaoTao" ColumnName="TenMoHinhDaoTao" />
+                <ScalarProperty Name="MaMoHinhDaoTao" ColumnName="MaMoHinhDaoTao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NganhDaoTaos">
+            <EntityTypeMapping TypeName="QLSV2021Model.NganhDaoTao">
+              <MappingFragment StoreEntitySet="NganhDaoTao">
+                <ScalarProperty Name="TenNganhDaoTao" ColumnName="TenNganhDaoTao" />
+                <ScalarProperty Name="MaNganhDaoTao" ColumnName="MaNganhDaoTao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SINHVIENs">
+            <EntityTypeMapping TypeName="QLSV2021Model.SINHVIEN">
+              <MappingFragment StoreEntitySet="SINHVIEN">
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+                <ScalarProperty Name="NamSinh" ColumnName="NamSinh" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="TenSV" ColumnName="TenSV" />
+                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="LaySVTheoLop" FunctionName="QLSV2021Model.Store.LaySVTheoLop">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLSV2021Model.LaySVTheoLop_Result">
+                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+                <ScalarProperty Name="TenSV" ColumnName="TenSV" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="NamSinh" ColumnName="NamSinh" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LayTatCaKhoa" FunctionName="QLSV2021Model.Store.LayTatCaKhoa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLSV2021Model.LayTatCaKhoa_Result">
+                <ScalarProperty Name="MaKhoa" ColumnName="MaKhoa" />
+                <ScalarProperty Name="TenKhoa" ColumnName="TenKhoa" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LocLopCoSinhVien" FunctionName="QLSV2021Model.Store.LocLopCoSinhVien">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLSV2021Model.LocLopCoSinhVien_Result">
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+                <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+                <ScalarProperty Name="NamHoc" ColumnName="NamHoc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LayToanBoSV" FunctionName="QLSV2021Model.Store.LayToanBoSV">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLSV2021Model.LayToanBoSV_Result">
+                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+                <ScalarProperty Name="TenSV" ColumnName="TenSV" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="NamSinh" ColumnName="NamSinh" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

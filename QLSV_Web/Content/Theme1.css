@@ -1,0 +1,16 @@
+﻿body {
+}
+.divClass
+            {
+              border:solid thin Silver;
+              margin: 10px 20px 10px 20px;
+              padding: 10px 20px 10px 20px;
+            }
+            .PagerStyleClass * td
+            {
+              border-style: none;
+            }
+            th, td
+            {
+              border:solid thin #A3C0E8; 
+            }

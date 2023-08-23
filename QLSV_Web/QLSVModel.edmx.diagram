@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a35a9693c8494c20b93ac28bc55d0403" Name="Diagram1" >
+        <EntityTypeShape EntityType="QLSV2021Model.BOMON" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="QLSV2021Model.DIEM" Width="1.5" PointX="10.5" PointY="5.25" />
+        <EntityTypeShape EntityType="QLSV2021Model.DONVI" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="QLSV2021Model.HeDaoTao" Width="1.5" PointX="3.75" PointY="8.625" />
+        <EntityTypeShape EntityType="QLSV2021Model.HOCPHAN" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="QLSV2021Model.KHOA" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="QLSV2021Model.KHUNGCT" Width="1.5" PointX="8.25" PointY="2.25" />
+        <EntityTypeShape EntityType="QLSV2021Model.LOP" Width="1.5" PointX="6" PointY="4.25" />
+        <EntityTypeShape EntityType="QLSV2021Model.MoHinhDaoTao" Width="1.5" PointX="3.75" PointY="2.25" />
+        <EntityTypeShape EntityType="QLSV2021Model.NganhDaoTao" Width="1.5" PointX="3.75" PointY="11" />
+        <EntityTypeShape EntityType="QLSV2021Model.SINHVIEN" Width="1.5" PointX="8.25" PointY="5.25" />
+        <AssociationConnector Association="QLSV2021Model.FK__HOCPHAN__MaBoMon__5AEE82B9" />
+        <AssociationConnector Association="QLSV2021Model.FK__DIEM__MaHocPhan__66603565" />
+        <AssociationConnector Association="QLSV2021Model.FK__DIEM__MaSV__656C112C" />
+        <AssociationConnector Association="QLSV2021Model.FK__HOCPHAN__MaDonVi__5BE2A6F2" />
+        <AssociationConnector Association="QLSV2021Model.FK__LOP__MaDonVi__5629CD9C" />
+        <AssociationConnector Association="QLSV2021Model.FK__LOP__MaHeDaoTao__5812160E" />
+        <AssociationConnector Association="QLSV2021Model.FK__KHUNGCT__MaHocPh__619B8048" />
+        <AssociationConnector Association="QLSV2021Model.FK__KHUNGCT__MaLop__628FA481" />
+        <AssociationConnector Association="QLSV2021Model.FK__LOP__MaMoHinhDao__5535A963" />
+        <AssociationConnector Association="QLSV2021Model.FK__LOP__MaNganh__571DF1D5" />
+        <AssociationConnector Association="QLSV2021Model.FK__SINHVIEN__MaLop__5EBF139D" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

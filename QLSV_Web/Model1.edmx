@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLSV2021Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LOP">
+          <Key>
+            <PropertyRef Name="MaLop" />
+          </Key>
+          <Property Name="MaLop" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenLop" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SoHocKyDaoTaoKhung" Type="int" Nullable="false" />
+          <Property Name="SoHocKyDaoTaoToiDa" Type="int" Nullable="false" />
+          <Property Name="HeSoQuiDoi" Type="int" Nullable="false" />
+          <Property Name="MaMoHinhDaoTao" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaDonViLienKet" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaDonVi" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NamHoc" Type="int" Nullable="false" />
+          <Property Name="MaNganh" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaHeDaoTao" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SINHVIEN">
+          <Key>
+            <PropertyRef Name="MaSV" />
+          </Key>
+          <Property Name="MaSV" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenSV" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NamSinh" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="MaLop" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__SINHVIEN__MaLop__5EBF139D">
+          <End Role="LOP" Type="Self.LOP" Multiplicity="1" />
+          <End Role="SINHVIEN" Type="Self.SINHVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOP">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="SINHVIEN">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="LaySVTheoLop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaLop" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="QLSV2021Model1StoreContainer">
+          <EntitySet Name="LOP" EntityType="Self.LOP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SINHVIEN" EntityType="Self.SINHVIEN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__SINHVIEN__MaLop__5EBF139D" Association="Self.FK__SINHVIEN__MaLop__5EBF139D">
+            <End Role="LOP" EntitySet="LOP" />
+            <End Role="SINHVIEN" EntitySet="SINHVIEN" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLSV2021Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SINHVIEN">
+          <Key>
+            <PropertyRef Name="MaSV" />
+          </Key>
+          <Property Name="MaSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GioiTinh" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NamSinh" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaLop" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LOP" Relationship="QLSV2021Model1.FK__SINHVIEN__MaLop__5EBF139D" FromRole="SINHVIEN" ToRole="LOP" />
+        </EntityType>
+        <EntityContainer Name="QLSV2021Entities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SINHVIENs" EntityType="Self.SINHVIEN" />
+          <FunctionImport Name="LaySVTheoLop" ReturnType="Collection(QLSV2021Model1.LaySVTheoLop_Result)">
+          <Parameter Name="MaLop" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="LOPs" EntityType="QLSV2021Model1.LOP" />
+          <AssociationSet Name="FK__SINHVIEN__MaLop__5EBF139D" Association="QLSV2021Model1.FK__SINHVIEN__MaLop__5EBF139D">
+            <End Role="LOP" EntitySet="LOPs" />
+            <End Role="SINHVIEN" EntitySet="SINHVIENs" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="LaySVTheoLop_Result">
+          <Property Type="String" Name="MaSV" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenSV" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="GioiTinh" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="NamSinh" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="MaLop" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <EntityType Name="LOP">
+          <Key>
+            <PropertyRef Name="MaLop" />
+          </Key>
+          <Property Name="MaLop" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TenLop" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SoHocKyDaoTaoKhung" Type="Int32" Nullable="false" />
+          <Property Name="SoHocKyDaoTaoToiDa" Type="Int32" Nullable="false" />
+          <Property Name="HeSoQuiDoi" Type="Int32" Nullable="false" />
+          <Property Name="MaMoHinhDaoTao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaDonViLienKet" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaDonVi" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="NamHoc" Type="Int32" Nullable="false" />
+          <Property Name="MaNganh" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaHeDaoTao" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SINHVIENs" Relationship="QLSV2021Model1.FK__SINHVIEN__MaLop__5EBF139D" FromRole="LOP" ToRole="SINHVIEN" />
+        </EntityType>
+        <Association Name="FK__SINHVIEN__MaLop__5EBF139D">
+          <End Type="QLSV2021Model1.LOP" Role="LOP" Multiplicity="1" />
+          <End Type="QLSV2021Model1.SINHVIEN" Role="SINHVIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOP">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="SINHVIEN">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLSV2021Model1StoreContainer" CdmEntityContainer="QLSV2021Entities3">
+          <EntitySetMapping Name="SINHVIENs">
+            <EntityTypeMapping TypeName="QLSV2021Model1.SINHVIEN">
+              <MappingFragment StoreEntitySet="SINHVIEN">
+                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+                <ScalarProperty Name="TenSV" ColumnName="TenSV" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="NamSinh" ColumnName="NamSinh" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="LaySVTheoLop" FunctionName="QLSV2021Model1.Store.LaySVTheoLop">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLSV2021Model1.LaySVTheoLop_Result">
+                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+                <ScalarProperty Name="TenSV" ColumnName="TenSV" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="NamSinh" ColumnName="NamSinh" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="LOPs">
+            <EntityTypeMapping TypeName="QLSV2021Model1.LOP">
+              <MappingFragment StoreEntitySet="LOP">
+                <ScalarProperty Name="MaHeDaoTao" ColumnName="MaHeDaoTao" />
+                <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
+                <ScalarProperty Name="NamHoc" ColumnName="NamHoc" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="MaDonViLienKet" ColumnName="MaDonViLienKet" />
+                <ScalarProperty Name="MaMoHinhDaoTao" ColumnName="MaMoHinhDaoTao" />
+                <ScalarProperty Name="HeSoQuiDoi" ColumnName="HeSoQuiDoi" />
+                <ScalarProperty Name="SoHocKyDaoTaoToiDa" ColumnName="SoHocKyDaoTaoToiDa" />
+                <ScalarProperty Name="SoHocKyDaoTaoKhung" ColumnName="SoHocKyDaoTaoKhung" />
+                <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
